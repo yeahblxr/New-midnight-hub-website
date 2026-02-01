@@ -2,41 +2,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RONIX‑Style Landing</title>
+  <title>Midnight</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+  <!-- Particle layer -->
+  <canvas id="particles"></canvas>  <header>
     <div class="nav">
-      <div class="brand">RONIX</div>
+      <div class="brand">MIDNIGHT</div>
       <div class="links">
         <a href="#">Home</a>
         <a href="#">Download</a>
         <a href="#">Get Key</a>
         <a href="#">Premium</a>
-        <a href="#">Contributors</a>
+        <a href="https://discord.gg/Yqak7y7DYT" target="_blank">Discord</a>
       </div>
     </div>
   </header>  <main>
     <section class="hero">
-      <div class="logo">RONIX</div>
+      <div class="logo">MIDNIGHT</div>
       <div class="tagline">The Ultimate Roblox Utility</div>
-      <p class="sub">A clean, neon‑purple landing page inspired by modern gaming tools.</p>
+      <p class="sub">Dark. Clean. Powerful. A neon‑purple landing page with animated particles and glow effects.</p>
       <div class="cta">
-        <a class="btn" href="#">Download Now</a>
-        <a class="btn alt" href="#">View Premium</a>
+        <a class="btn glow" href="#">Download Now</a>
+        <a class="btn alt glow" href="#">View Premium</a>
       </div>
-      <div class="card">Official Discord Server · Verified</div>
+      <a class="card discord glow" href="https://discord.gg/Yqak7y7DYT" target="_blank">Join the Official Discord · Verified</a>
     </section><section class="section">
   <div class="grid">
-    <div class="feature"><strong>Fast</strong><br>Optimized UI with smooth animations.</div>
-    <div class="feature"><strong>Clean</strong><br>No emoji clutter.</div>
-    <div class="feature"><strong>Responsive</strong><br>Mobile & desktop ready.</div>
-    <div class="feature"><strong>Customizable</strong><br>Easy theming.</div>
+    <div class="feature glow"><strong>Fast</strong><br>Optimized and lightweight.</div>
+    <div class="feature glow"><strong>Stealthy</strong><br>Clean UI, no clutter.</div>
+    <div class="feature glow"><strong>Responsive</strong><br>Mobile & desktop ready.</div>
+    <div class="feature glow"><strong>Customizable</strong><br>Easy theming.</div>
   </div>
 </section>
 
-  </main>  <footer>© 2026 Ronix‑style demo</footer>
-</body>
+  </main>  <footer>© 2026 Midnight</footer>  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.5,
+        s: Math.random() * 0.4 + 0.1
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(155,108,255,0.6)';
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        p.y -= p.s;
+        if (p.y < 0) p.y = canvas.height;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script></body>
 </html>
